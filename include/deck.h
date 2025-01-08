@@ -21,13 +21,15 @@ typedef struct {
     size_t capacity;
 } Deck;
 
-void create_deck(Deck *);
+void create_deck(Deck *, size_t capacity);
 
 void populate_deck(Deck *);
 
 void shuffle_deck(Deck *);
 
 Card draw_from_deck(Deck *);
+
+void add_card_deck(Deck *, Card card);
 
 void print_deck(Deck *);
 
