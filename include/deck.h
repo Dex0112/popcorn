@@ -27,6 +27,8 @@ void populate_deck(Deck *);
 
 void shuffle_deck(Deck *);
 
+Card draw_from_deck(Deck *);
+
 void print_deck(Deck *);
 
 void free_deck(Deck *);

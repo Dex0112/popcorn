@@ -32,6 +32,16 @@ void shuffle_deck(Deck *deck) {
     }
 }
 
+Card draw_from_deck(Deck *deck) {
+    if (deck->size == 0) {
+        printf("ERROR: Deck is empty\n");
+    }
+
+    Card card;
+
+    return card;
+}
+
 void print_deck(Deck *deck) {
     char suits[] = {'H', 'D', 'C', 'S'};
 
