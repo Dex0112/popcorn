@@ -9,6 +9,7 @@
 #include <assert.h>
 #include <deck.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "SDL3/SDL_video.h"
 
@@ -43,13 +44,15 @@ int main() {
     card_back_srect.w = 140;
     card_back_srect.h = 190;
 
-    deck_rect.w = 140;
-    deck_rect.h = 190;
-    deck_rect.x = 1080 - 140;
+    float scale = 1;
+
+    deck_rect.w = 140.0 * scale;
+    deck_rect.h = 190 * scale;
+    deck_rect.x = 1080 - 140 * scale;
     deck_rect.y = 0;
 
-    draw_pile_rect.w = 140;
-    draw_pile_rect.h = 190;
+    draw_pile_rect.w = 140 * scale;
+    draw_pile_rect.h = 190 * scale;
     draw_pile_rect.x = 0;
     draw_pile_rect.y = 0;
 
@@ -72,13 +75,19 @@ int main() {
                 continue;
             }
             if (event.type == SDL_EVENT_MOUSE_BUTTON_UP) {
+                if(deck.size == 0) {
+                    deck.size = deck.capacity;
+                    shuffle_deck(&deck);
+                    printf("Reset\n");
+                }
+
                 // Draw card logic
                 Card card = draw_from_deck(&deck);
                 get_srect(card, &card_srect);
             }
         }
 
-        SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 200, 255);
         SDL_RenderClear(renderer);
         SDL_RenderTexture(renderer, card_spritesheet, &card_srect,
                           &draw_pile_rect);
